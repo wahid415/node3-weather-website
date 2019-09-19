@@ -7,6 +7,8 @@ const forcast = require('./utility/forcast')
 
 const app = express();
 
+const port = process.env.PORT || 3000
+
 // Define pathn for Express config
 const publicDirectorypath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
@@ -84,6 +86,6 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('Application is up running on 3000 port')
+app.listen(port, () => {
+    console.log(`Application is up running on ${port} port`)
 })
