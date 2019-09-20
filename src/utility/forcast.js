@@ -8,13 +8,16 @@ module.exports = (latitude, longitude, callback) => {
 
     request({url, json: true}, (error, { body }) => {
         if(error) {
-            callback('unable to coinnect to the forcast services', undefined)
+            callback('unable to connect to the forecast services', undefined)
         }
         else if(body.error) {
             callback('unable to find the location', undefined)
         }
         else {
-            callback(undefined, body.daily.data[0].summary)
+            callback(undefined, body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + 
+            ' degrees out. The high today is ' + body.daily.data[0].temperatureHigh + ' degree with a low of ' 
+            + body.daily.data[0].temperatureLow + ' degree. There is a ' + body.currently.precipProbability +
+             '% chance of rain.')
         }
     });
 }
